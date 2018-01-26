@@ -532,3 +532,66 @@ Started GET "/songs/new" for ::1 at 2016-02-06 15:27:32 -0500
 Processing by SongsController#new as HTML
   Rendered songs/new.html.erb within layouts/application (359.5ms)
 Completed 200 OK in 378ms (Views: 370.0ms | ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddAttachmentAlbumCoverToSongs (20180126202503)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "songs" ADD "album_cover_file_name" varchar[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "songs" ADD "album_cover_content_type" varchar
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "songs" ADD "album_cover_file_size" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "songs" ADD "album_cover_updated_at" datetime
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180126202503"]]
+  [1m[35m (9.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_songs_on_artist_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_songs_on_artist_id' AND type='index'
+
+
+
+Started GET "/" for 10.240.0.42 at 2018-01-26 20:36:34 +0000
+Cannot render console from 10.240.0.42! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.3.1/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (1.8ms)
+Completed 200 OK in 9ms (Views: 9.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/songs/new" for 10.240.1.191 at 2018-01-26 20:36:38 +0000
+Cannot render console from 10.240.1.191! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SongsController#new as HTML
+  Rendered songs/new.html.erb within layouts/application (43.9ms)
+Completed 200 OK in 300ms (Views: 287.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/songs" for 10.240.0.234 at 2018-01-26 20:36:52 +0000
+Cannot render console from 10.240.0.234! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SongsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kAcirlJouCD+fPmzFE+EAYRgVXVfDdYRzLONSAX4kpM9Lf5Gi4mPekF+YfAtY7SonhG/8UE4u2hiTHbHhPmFQw==", "song"=>{"album_cover"=>#<ActionDispatch::Http::UploadedFile:0x007fc286340850 @tempfile=#<Tempfile:/tmp/RackMultipart20180126-46336-14wvqfn.jpg>, @original_filename="coffee-steam-hot-mittens-small.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"song[album_cover]\"; filename=\"coffee-steam-hot-mittens-small.jpg\"\r\nContent-Type: image/jpeg\r\n">, "title"=>"Song Test", "artist_name"=>"Artist Test Test"}, "commit"=>"Create Song"}
+Unpermitted parameter: album_cover
+  [1m[35mArtist Load (0.2ms)[0m  SELECT  "artists".* FROM "artists" WHERE "artists"."name" = ? LIMIT 1  [["name", "Artist Test Test"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "artists" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Artist Test Test"], ["created_at", "2018-01-26 20:36:52.645821"], ["updated_at", "2018-01-26 20:36:52.645821"]]
+  [1m[36m (6.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "songs" ("title", "artist_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "Song Test"], ["artist_id", 3], ["created_at", "2018-01-26 20:36:52.655462"], ["updated_at", "2018-01-26 20:36:52.655462"]]
+  [1m[35m (6.9ms)[0m  commit transaction
+Redirected to http://pbhagyashri-pbhagyashri.c9users.io:8080/songs/3
+Completed 302 Found in 32ms (ActiveRecord: 15.2ms)
+
+
+Started GET "/songs/3" for 10.240.1.60 at 2018-01-26 20:36:52 +0000
+Cannot render console from 10.240.1.60! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SongsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSong Load (0.3ms)[0m  [1mSELECT  "songs".* FROM "songs" WHERE "songs"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mArtist Load (0.2ms)[0m  SELECT  "artists".* FROM "artists" WHERE "artists"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered songs/show.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 14ms (Views: 11.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/original/default-4d452c63d330fa4ca5200c3fa437bfd595741d59846222f62704f02365fdbc6c.png" for 10.240.1.134 at 2018-01-26 20:36:52 +0000
+Cannot render console from 10.240.1.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
